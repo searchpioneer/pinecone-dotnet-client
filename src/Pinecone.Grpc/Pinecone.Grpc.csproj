@@ -1,0 +1,58 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Pinecone .NET gRPC client</Title>
+    <Description>.NET gRPC client for Pinecone vector database</Description>
+    <TargetFrameworks>net462; net471; netstandard2.0; net6.0; net7.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>true</IsPackable>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <RootNamespace>Pinecone.Grpc</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.22.4" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.53.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.54.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="..\..\protos\$(PineconeVersion)\*.proto" GrpcServices="Client" Link="protos\$(PineconeVersion)\*.proto" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <GeneratedText><![CDATA[
+namespace Pinecone.Grpc%3B
+
+public static partial class VectorService
+{
+    public partial class VectorServiceClient
+    {
+        /// <summary>
+        /// The version of pinecone from which this client was created
+        /// </summary>
+        public const string PineconeVersion = "$(PineconeVersion)"%3B
+    }
+}
+      ]]></GeneratedText>
+  </PropertyGroup>
+
+  <Target Name="AddGeneratedFile" BeforeTargets="BeforeCompile;CoreCompile" Inputs="$(MSBuildAllProjects)" Outputs="$(IntermediateOutputPath)PineconeGrpcClient.g.cs">
+    <PropertyGroup>
+      <GeneratedFilePath>$(IntermediateOutputPath)PineconeGrpcClient.g.cs</GeneratedFilePath>
+    </PropertyGroup>
+    <ItemGroup>
+      <Compile Include="$(GeneratedFilePath)" />
+      <FileWrites Include="$(GeneratedFilePath)" />
+    </ItemGroup>
+    <WriteLinesToFile Lines="$(GeneratedText)" File="$(GeneratedFilePath)" WriteOnlyWhenDifferent="true" Overwrite="true" />
+  </Target>
+
+
+</Project>
