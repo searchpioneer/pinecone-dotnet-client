@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Title>Pinecone .NET gRPC client</Title>
     <Description>.NET gRPC client for Pinecone vector database</Description>
-    <TargetFrameworks>net462; net471; netstandard2.0; net6.0; net7.0</TargetFrameworks>
+    <TargetFrameworks>net462; net471; netstandard2.0; net6.0; net8.0</TargetFrameworks>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsPackable>true</IsPackable>
@@ -14,9 +14,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Google.Protobuf" Version="3.22.4" />
-    <PackageReference Include="Grpc.Net.Client" Version="2.53.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.54.0">
+    <PackageReference Include="Google.Protobuf" Version="3.26.1" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.62.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.63.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

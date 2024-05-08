@@ -1,7 +1,4 @@
-﻿using Grpc.Core;
-using Grpc.Net.Client;
-
-namespace Pinecone.Grpc;
+﻿namespace Pinecone.Grpc;
 
 /// <summary>
 /// Configuration to interact with Pinecone service

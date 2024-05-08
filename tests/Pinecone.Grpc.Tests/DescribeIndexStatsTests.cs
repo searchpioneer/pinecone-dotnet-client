@@ -4,12 +4,9 @@ using Xunit;
 namespace Pinecone.Grpc.Tests;
 
 [Collection("Pinecone")]
-public class DescribeIndexStatsTests
+public class DescribeIndexStatsTests(PineconeFixture fixture)
 {
-	private readonly VectorService.VectorServiceClient? _client;
-
-	public DescribeIndexStatsTests(PineconeFixture fixture) =>
-		_client = fixture.VectorServiceClient;
+	private readonly VectorService.VectorServiceClient? _client = fixture.VectorServiceClient;
 
 	[Fact]
 	public void CanGetIndexStats()
