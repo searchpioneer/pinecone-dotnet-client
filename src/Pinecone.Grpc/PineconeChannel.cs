@@ -1,4 +1,5 @@
 ﻿using Grpc.Core;
+using Grpc.Core.Interceptors;
 using Grpc.Net.Client;
 
 namespace Pinecone.Grpc;
@@ -20,7 +21,11 @@ public class PineconeChannel : ChannelBase, IDisposable
 	}
 
 	/// <inheritdoc />
-	public override CallInvoker CreateCallInvoker() => new PineconeCallInvoker(_channel, _apiKey);
+	public override CallInvoker CreateCallInvoker() => _channel.Intercept(metadata =>
+	{
+		metadata.Add("api-key", _apiKey);
+		return metadata;
+	});
 
 	/// <summary>
 	/// Creates a <see cref="PineconeChannel"/> for the specified configuration and index name
