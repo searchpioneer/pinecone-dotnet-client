@@ -1,4 +1,8 @@
-# .NET gRPC client for Pinecone vector database
+[<img align="right" width="250" height="auto" src="https://searchpioneer.com/assets/svg/logos/logo.svg">](https://searchpioneer.com/)
+
+Learn more about our services and expertise: [https://searchpioneer.com/](https://searchpioneer.com/)
+
+# Pinecone .NET client
 
 A .NET gRPC client for [Pinecone vector database](https://www.pinecone.io/).
 
